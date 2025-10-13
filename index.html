@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RSVP Casamento</title>
+  <title>Casamento Jackline e Samarthony</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     body {
@@ -51,8 +51,14 @@
     }
     h2 {
       color: #333;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       font-size: 22px;
+    }
+    .intro {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 18px;
+      line-height: 1.4em;
     }
     label {
       display: block;
@@ -133,12 +139,18 @@
     <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Coração verde" class="heart">
 
     <!-- Monograma -->
-    <img src="COLE_AQUI_URL_DO_SEU_MONOGRAMA.png" alt="Monograma" class="logo">
+    <img src="monograma.png" alt="Monograma J & S" class="monograma" />
 
     <!-- Nome dos noivos -->
-    <div class="noivos">Katy & Lucas</div>
+    <div class="noivos">Jackine e Samarthony</div>
 
     <h2>Confirme sua presença</h2>
+    <p class="intro">
+      Estamos ansiosos para celebrar com você!<br>
+      Por favor, preencha seu nome completo e telefone para confirmar sua presença.
+      O apelido é opcional, e você pode selecionar se poderá comparecer.
+    </p>
+
     <form id="rsvpForm">
       <label>Nome Completo*</label>
       <input type="text" id="nome" required>
@@ -162,7 +174,7 @@
     <p id="mensagem"></p>
 
     <footer>
-      Criado por <a href="https://wa.me/5591988198919?text=Olá%2C+quero+saber+sobre+o+RSVP+digital" target="_blank">Cerimonial Katy</a>
+      Criado por <a href="https://wa.me/5591988198919?text=Olá%2C+quero+saber+sobre+o+RSVP+digital" target="_blank">Katiene Barbosa</a>
     </footer>
   </div>
 
@@ -177,7 +189,6 @@
 
 <script>
 const scriptURL = "https://script.google.com/macros/s/AKfycbxWsfrYQaRhbZO8HwOeL_t-7pBB7f9rHdZ-HHz8xbreQRoSaNfeNcAmF-osKcG50-OOkA/exec";
-
 const dataLimite = new Date("2025-11-25T23:59:59");
 
 const form = document.getElementById('rsvpForm');
@@ -192,7 +203,6 @@ const btnVoltar = document.getElementById('btnVoltar');
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  // Bloqueio por data
   const agora = new Date();
   if (agora > dataLimite) {
     mensagemEl.textContent = "Desculpe, as confirmações estão encerradas.";
@@ -211,7 +221,6 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
-  // Validação de telefone - formato brasileiro simples: DDD + 8-9 dígitos
   const regexTel = /^[1-9]{2}[0-9]{8,9}$/;
   if (!regexTel.test(telefone)) {
     mensagemEl.textContent = "Telefone inválido. Use somente números: DDD + número.";
@@ -232,12 +241,9 @@ form.addEventListener('submit', async (e) => {
     const result = await res.json();
 
     if (result.status === "ok") {
-      let msgCustom = "";
-      if (presenca === "Sim") {
-        msgCustom = "Uhuuul! 🎉 Obrigado por confirmar sua presença! Estamos preparando tudo com muito carinho para receber você nesse dia tão especial. Contagem regressiva ativada 💕";
-      } else {
-        msgCustom = "💌 Lamentamos que não possa estar conosco. Agradecemos sua resposta!";
-      }
+      let msgCustom = presenca === "Sim"
+        ? "Uhuuul! 🎉 Obrigado por confirmar sua presença! Estamos preparando tudo com muito carinho para receber você nesse dia tão especial. Contagem regressiva ativada 💕"
+        : "😩 Lamentamos que não possa estar conosco. Sentiremos sua falta!";
 
       cardNome.textContent = nome;
       cardStatus.textContent = msgCustom;
