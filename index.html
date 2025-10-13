@@ -4,7 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Casamento Jackline e Samarthony</title>
+
+  <!-- Favicon (ícone da aba) -->
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
+
+  <!-- Fontes -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -15,13 +21,13 @@
       min-height: 100vh;
       margin: 0;
       padding: 20px;
-      overflow: auto;
     }
+
     .container {
       background: #fff;
-      padding: 35px 25px;
-      border-radius: 18px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
       width: 100%;
       max-width: 420px;
       text-align: center;
@@ -29,37 +35,44 @@
       opacity: 0;
       animation: fadeIn 0.8s forwards;
     }
+
     @keyframes fadeIn {
       to { opacity: 1; }
     }
-    .logo {
-      width: 80px;
-      height: 80px;
+
+    .heart {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 8px;
+    }
+
+    .monograma {
+      width: 100px;
+      height: auto;
       margin-bottom: 10px;
       object-fit: contain;
     }
-    .heart {
-      width: 48px;
-      height: 48px;
-      margin-bottom: 8px;
-    }
+
     .noivos {
       font-family: 'Great Vibes', cursive;
-      font-size: 36px;
+      font-size: 38px;
       color: #8bd24d;
-      margin-bottom: 18px;
+      margin-bottom: 15px;
     }
+
     h2 {
       color: #333;
       margin-bottom: 10px;
       font-size: 22px;
     }
+
     .intro {
       font-size: 14px;
       color: #555;
       margin-bottom: 18px;
-      line-height: 1.4em;
+      line-height: 1.5em;
     }
+
     label {
       display: block;
       text-align: left;
@@ -67,6 +80,7 @@
       font-weight: 500;
       color: #444;
     }
+
     input, select {
       width: 100%;
       padding: 10px;
@@ -75,6 +89,7 @@
       border-radius: 8px;
       font-size: 15px;
     }
+
     button {
       margin-top: 20px;
       width: 100%;
@@ -88,14 +103,17 @@
       cursor: pointer;
       transition: transform 0.2s, background 0.3s;
     }
+
     button:hover {
       background: #76b823;
       transform: scale(1.05);
     }
+
     #mensagem {
       margin-top: 15px;
       font-weight: bold;
     }
+
     .card {
       background: #f9f9f9;
       border: 1px solid #ddd;
@@ -104,30 +122,36 @@
       text-align: center;
       margin-top: 20px;
     }
+
     .card h3 {
       margin: 0;
       font-size: 20px;
       color: #333;
     }
+
     .card p {
       margin: 8px 0;
       font-size: 16px;
     }
+
     .card button {
       margin: 10px 5px 0 5px;
       padding: 10px 15px;
       font-size: 14px;
     }
+
     footer {
       margin-top: 25px;
       font-size: 13px;
       color: #666;
     }
+
     footer a {
       color: #8bd24d;
       text-decoration: none;
       font-weight: 500;
     }
+
     footer a:hover {
       text-decoration: underline;
     }
@@ -138,17 +162,17 @@
     <!-- Coração verde -->
     <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Coração verde" class="heart">
 
-    <!-- Monograma -->
+    <!-- Monograma (cole o link da imagem no src abaixo) -->
     <img src="monograma.png" alt="Monograma J & S" class="monograma" />
 
     <!-- Nome dos noivos -->
-    <div class="noivos">Jackine e Samarthony</div>
+    <div class="noivos">Jackline e Samarthony</div>
 
     <h2>Confirme sua presença</h2>
     <p class="intro">
       Estamos ansiosos para celebrar com você!<br>
-      Por favor, preencha seu nome completo e telefone para confirmar sua presença.
-      O apelido é opcional, e você pode selecionar se poderá comparecer.
+      Preencha seu nome completo e telefone para confirmar sua presença.<br>
+      O apelido é opcional. Após o envio, você verá seu cartão de confirmação.
     </p>
 
     <form id="rsvpForm">
@@ -174,7 +198,7 @@
     <p id="mensagem"></p>
 
     <footer>
-      Criado por <a href="https://wa.me/5591988198919?text=Olá%2C+quero+saber+sobre+o+RSVP+digital" target="_blank">Katiene Barbosa</a>
+      Criado por <a href="https://wa.me/5591988198919?text=Olá%2C+quero+saber+sobre+RSVP+digital" target="_blank">Katiene Barbosa</a>
     </footer>
   </div>
 
@@ -214,7 +238,7 @@ form.addEventListener('submit', async (e) => {
   const apelido = document.getElementById('apelido').value.trim();
   const telefone = document.getElementById('telefone').value.trim();
   const presenca = document.getElementById('presenca').value;
-  
+
   if (!nome || !telefone) {
     mensagemEl.textContent = "Preencha nome e telefone!";
     mensagemEl.style.color = "red";
@@ -231,19 +255,20 @@ form.addEventListener('submit', async (e) => {
   mensagemEl.textContent = "Enviando...";
   mensagemEl.style.color = "gray";
 
-  const data = { nome, apelido, telefone, presenca };
   try {
-    const res = await fetch(scriptURL, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    });
+    const formData = new FormData();
+    formData.append("nome", nome);
+    formData.append("apelido", apelido);
+    formData.append("telefone", telefone);
+    formData.append("presenca", presenca);
+
+    const res = await fetch(scriptURL, { method: "POST", body: formData });
     const result = await res.json();
 
     if (result.status === "ok") {
       let msgCustom = presenca === "Sim"
         ? "Uhuuul! 🎉 Obrigado por confirmar sua presença! Estamos preparando tudo com muito carinho para receber você nesse dia tão especial. Contagem regressiva ativada 💕"
-        : "😩 Lamentamos que não possa estar conosco. Sentiremos sua falta!";
+        : "💌 Lamentamos que não possa estar conosco. Agradecemos sua resposta!";
 
       cardNome.textContent = nome;
       cardStatus.textContent = msgCustom;
