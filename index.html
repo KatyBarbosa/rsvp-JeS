@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSVP Casamento</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      overflow: auto;
+    }
+    .container {
+      background: #fff;
+      padding: 35px 25px;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 0.8s forwards;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+      object-fit: contain;
+    }
+    .heart {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 8px;
+    }
+    .noivos {
+      font-family: 'Great Vibes', cursive;
+      font-size: 36px;
+      color: #8bd24d;
+      margin-bottom: 18px;
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+    label {
+      display: block;
+      text-align: left;
+      margin-top: 10px;
+      font-weight: 500;
+      color: #444;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #8bd24d;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+    button:hover {
+      background: #76b823;
+      transform: scale(1.05);
+    }
+    #mensagem {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .card {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .card h3 {
+      margin: 0;
+      font-size: 20px;
+      color: #333;
+    }
+    .card p {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+    .card button {
+      margin: 10px 5px 0 5px;
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+    footer {
+      margin-top: 25px;
+      font-size: 13px;
+      color: #666;
+    }
+    footer a {
+      color: #8bd24d;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="formContainer">
+    <!-- Coração verde -->
+    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Coração verde" class="heart">
+
+    <!-- Monograma -->
+    <img src="COLE_AQUI_URL_DO_SEU_MONOGRAMA.png" alt="Monograma" class="logo">
+
+    <!-- Nome dos noivos -->
+    <div class="noivos">Katy & Lucas</div>
+
+    <h2>Confirme sua presença</h2>
+    <form id="rsvpForm">
+      <label>Nome Completo*</label>
+      <input type="text" id="nome" required>
+      
+      <label>Apelido (opcional)</label>
+      <input type="text" id="apelido">
+
+      <label>Telefone* (somente números)</label>
+      <input type="text" id="telefone" required placeholder="DDDNúmero">
+
+      <label>Vou comparecer?</label>
+      <select id="presenca" required>
+        <option value="">Selecione</option>
+        <option value="Sim">Sim</option>
+        <option value="Não">Não</option>
+      </select>
+
+      <button type="submit" id="btnEnviar">Enviar</button>
+    </form>
+
+    <p id="mensagem"></p>
+
+    <footer>
+      Criado por <a href="https://wa.me/5591988198919?text=Olá%2C+quero+saber+sobre+o+RSVP+digital" target="_blank">Cerimonial Katy</a>
+    </footer>
+  </div>
+
+  <div class="container" id="cardContainer" style="display: none;">
+    <div class="card">
+      <h3 id="cardNome"></h3>
+      <p id="cardStatus"></p>
+      <button id="btnFechar">Fechar</button>
+      <button id="btnVoltar">Voltar ao convite</button>
+    </div>
+  </div>
+
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbxWsfrYQaRhbZO8HwOeL_t-7pBB7f9rHdZ-HHz8xbreQRoSaNfeNcAmF-osKcG50-OOkA/exec";
+
+const dataLimite = new Date("2025-11-25T23:59:59");
+
+const form = document.getElementById('rsvpForm');
+const mensagemEl = document.getElementById('mensagem');
+const formContainer = document.getElementById('formContainer');
+const cardContainer = document.getElementById('cardContainer');
+const cardNome = document.getElementById('cardNome');
+const cardStatus = document.getElementById('cardStatus');
+const btnFechar = document.getElementById('btnFechar');
+const btnVoltar = document.getElementById('btnVoltar');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // Bloqueio por data
+  const agora = new Date();
+  if (agora > dataLimite) {
+    mensagemEl.textContent = "Desculpe, as confirmações estão encerradas.";
+    mensagemEl.style.color = "red";
+    return;
+  }
+
+  const nome = document.getElementById('nome').value.trim();
+  const apelido = document.getElementById('apelido').value.trim();
+  const telefone = document.getElementById('telefone').value.trim();
+  const presenca = document.getElementById('presenca').value;
+  
+  if (!nome || !telefone) {
+    mensagemEl.textContent = "Preencha nome e telefone!";
+    mensagemEl.style.color = "red";
+    return;
+  }
+
+  // Validação de telefone - formato brasileiro simples: DDD + 8-9 dígitos
+  const regexTel = /^[1-9]{2}[0-9]{8,9}$/;
+  if (!regexTel.test(telefone)) {
+    mensagemEl.textContent = "Telefone inválido. Use somente números: DDD + número.";
+    mensagemEl.style.color = "red";
+    return;
+  }
+
+  mensagemEl.textContent = "Enviando...";
+  mensagemEl.style.color = "gray";
+
+  const data = { nome, apelido, telefone, presenca };
+  try {
+    const res = await fetch(scriptURL, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    });
+    const result = await res.json();
+
+    if (result.status === "ok") {
+      let msgCustom = "";
+      if (presenca === "Sim") {
+        msgCustom = "Uhuuul! 🎉 Obrigado por confirmar sua presença! Estamos preparando tudo com muito carinho para receber você nesse dia tão especial. Contagem regressiva ativada 💕";
+      } else {
+        msgCustom = "💌 Lamentamos que não possa estar conosco. Agradecemos sua resposta!";
+      }
+
+      cardNome.textContent = nome;
+      cardStatus.textContent = msgCustom;
+
+      formContainer.style.display = "none";
+      cardContainer.style.display = "block";
+    } else if (result.status === "duplicado") {
+      mensagemEl.textContent = "Já existe um RSVP com esse nome ou telefone.";
+      mensagemEl.style.color = "red";
+    } else {
+      mensagemEl.textContent = "Erro ao enviar. Tente novamente.";
+      mensagemEl.style.color = "red";
+    }
+  } catch (err) {
+    mensagemEl.textContent = "Falha na conexão. Verifique a internet.";
+    mensagemEl.style.color = "red";
+  }
+});
+
+btnFechar.addEventListener('click', () => {
+  cardContainer.style.display = "none";
+});
+
+btnVoltar.addEventListener('click', () => {
+  cardContainer.style.display = "none";
+  formContainer.style.display = "block";
+  mensagemEl.textContent = "";
+  mensagemEl.style.color = "";
+  form.reset();
+});
+</script>
+</body>
+</html>
