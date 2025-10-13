@@ -6,7 +6,11 @@
   <title>Casamento Jackline e Samarthony</title>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
+  <link rel="icon" href='data:image/svg+xml;utf8,
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path fill="%238db24d" d="M12 21s-7-4.438-9.243-6.543C-0.187 11.73 3.2 7 6.5 7c1.866 0 3.093 1.04 3.5 1.71C10.407 8.04 11.634 7 13.5 7 16.8 7 20.187 11.73 21.243 14.457 19 16.562 12 21 12 21z"/>
+    </svg>'>
+
 
   <!-- Fontes -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -72,14 +76,13 @@
 <body>
 
   <div class="container" id="formContainer">
-    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Coração verde" class="heart">
     <img src="monograma.png" alt="Monograma J & S" class="monograma" />
     <div class="noivos">Jackline e Samarthony</div>
     <h2>Confirme sua presença</h2>
     <p class="intro">
       Estamos ansiosos para celebrar com você!<br>
       Preencha seu nome completo e telefone para confirmar sua presença.<br>
-      O apelido é opcional. Após o envio, você verá seu cartão de confirmação.
+      Após o envio, você verá seu cartão de confirmação.
     </p>
 
     <form id="rsvpForm">
@@ -99,7 +102,7 @@
         <option value="Não">Não</option>
       </select>
 
-      <button type="submit" id="btnEnviar">Enviar</button>
+      <button type="submit" id="btnEnviar">Confirmar</button>
     </form>
 
     <p id="mensagem"></p>
@@ -208,4 +211,5 @@ btnVoltar.addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
