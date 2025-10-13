@@ -5,12 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Casamento Jackline e Samarthony</title>
 
-  <!-- Favicon (ícone da aba) -->
-  <link rel="icon" href='data:image/svg+xml;utf8,
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path fill="%238db24d" d="M12 21s-7-4.438-9.243-6.543C-0.187 11.73 3.2 7 6.5 7c1.866 0 3.093 1.04 3.5 1.71C10.407 8.04 11.634 7 13.5 7 16.8 7 20.187 11.73 21.243 14.457 19 16.562 12 21 12 21z"/>
-    </svg>'>
-
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
 
   <!-- Fontes -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -40,60 +36,15 @@
       animation: fadeIn 0.8s forwards;
     }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+    @keyframes fadeIn { to { opacity: 1; } }
 
-    .heart {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 8px;
-    }
-
-    .monograma {
-      width: 100px;
-      height: auto;
-      margin-bottom: 10px;
-      object-fit: contain;
-    }
-
-    .noivos {
-      font-family: 'Great Vibes', cursive;
-      font-size: 38px;
-      color: #8bd24d;
-      margin-bottom: 15px;
-    }
-
-    h2 {
-      color: #333;
-      margin-bottom: 10px;
-      font-size: 22px;
-    }
-
-    .intro {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 18px;
-      line-height: 1.5em;
-    }
-
-    label {
-      display: block;
-      text-align: left;
-      margin-top: 10px;
-      font-weight: 500;
-      color: #444;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 15px;
-    }
-
+    .heart { width: 40px; height: 40px; margin-bottom: 8px; }
+    .monograma { width: 100px; height: auto; margin-bottom: 10px; object-fit: contain; }
+    .noivos { font-family: 'Great Vibes', cursive; font-size: 38px; color: #8bd24d; margin-bottom: 15px; }
+    h2 { color: #333; margin-bottom: 10px; font-size: 22px; }
+    .intro { font-size: 14px; color: #555; margin-bottom: 18px; line-height: 1.5em; }
+    label { display: block; text-align: left; margin-top: 10px; font-weight: 500; color: #444; }
+    input, select { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; }
     button {
       margin-top: 20px;
       width: 100%;
@@ -107,68 +58,23 @@
       cursor: pointer;
       transition: transform 0.2s, background 0.3s;
     }
-
-    button:hover {
-      background: #76b823;
-      transform: scale(1.05);
-    }
-
-    #mensagem {
-      margin-top: 15px;
-      font-weight: bold;
-    }
-
-    .card {
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .card h3 {
-      margin: 0;
-      font-size: 20px;
-      color: #333;
-    }
-
-    .card p {
-      margin: 8px 0;
-      font-size: 16px;
-    }
-
-    .card button {
-      margin: 10px 5px 0 5px;
-      padding: 10px 15px;
-      font-size: 14px;
-    }
-
-    footer {
-      margin-top: 25px;
-      font-size: 13px;
-      color: #666;
-    }
-
-    footer a {
-      color: #8bd24d;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
+    button:hover { background: #76b823; transform: scale(1.05); }
+    #mensagem { margin-top: 15px; font-weight: bold; }
+    .card { background: #f9f9f9; border: 1px solid #ddd; border-radius: 12px; padding: 20px; text-align: center; margin-top: 20px; }
+    .card h3 { margin: 0; font-size: 20px; color: #333; }
+    .card p { margin: 8px 0; font-size: 16px; }
+    .card button { margin: 10px 5px 0 5px; padding: 10px 15px; font-size: 14px; }
+    footer { margin-top: 25px; font-size: 13px; color: #666; }
+    footer a { color: #8bd24d; text-decoration: none; font-weight: 500; }
+    footer a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
+
   <div class="container" id="formContainer">
-      <!-- Monograma (cole o link da imagem no src abaixo) -->
+    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Coração verde" class="heart">
     <img src="monograma.png" alt="Monograma J & S" class="monograma" />
-
-    <!-- Nome dos noivos -->
     <div class="noivos">Jackline e Samarthony</div>
-
     <h2>Confirme sua presença</h2>
     <p class="intro">
       Estamos ansiosos para celebrar com você!<br>
@@ -199,7 +105,7 @@
     <p id="mensagem"></p>
 
     <footer>
-      Criado por <a href="https://wa.me/5591988198919?text=Olá%2C+quero+saber+sobre+RSVP+digital" target="_blank">Katiene Barbosa</a>
+      Criado por <a href="https://wa.me/5591988198919?text=Olá%2C+quero+saber+sobre+o+RSVP+digital" target="_blank">Katiene Barbosa</a>
     </footer>
   </div>
 
@@ -213,7 +119,7 @@
   </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbxWsfrYQaRhbZO8HwOeL_t-7pBB7f9rHdZ-HHz8xbreQRoSaNfeNcAmF-osKcG50-OOkA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzu-pP4POgzRxd0rBoLkZLo4e2rTFDdZ7M90JNN6YVzG3PMCnw47NpY4ZKmFZNsJaIIKg/exec";
 const dataLimite = new Date("2025-11-25T23:59:59");
 
 const form = document.getElementById('rsvpForm');
@@ -257,6 +163,7 @@ form.addEventListener('submit', async (e) => {
   mensagemEl.style.color = "gray";
 
   try {
+    // Envio via FormData
     const formData = new FormData();
     formData.append("nome", nome);
     formData.append("apelido", apelido);
@@ -267,9 +174,9 @@ form.addEventListener('submit', async (e) => {
     const result = await res.json();
 
     if (result.status === "ok") {
-      let msgCustom = presenca === "Sim"
+      const msgCustom = presenca === "Sim"
         ? "Uhuuul! 🎉 Obrigado por confirmar sua presença! Estamos preparando tudo com muito carinho para receber você nesse dia tão especial. Contagem regressiva ativada 💕"
-        : "💌 Lamentamos que não possa estar conosco. Agradecemos sua resposta!";
+        : "😩 Lamentamos que não possa estar conosco. Sentiremos sua falta!";
 
       cardNome.textContent = nome;
       cardStatus.textContent = msgCustom;
@@ -283,16 +190,14 @@ form.addEventListener('submit', async (e) => {
       mensagemEl.textContent = "Erro ao enviar. Tente novamente.";
       mensagemEl.style.color = "red";
     }
+
   } catch (err) {
     mensagemEl.textContent = "Falha na conexão. Verifique a internet.";
     mensagemEl.style.color = "red";
   }
 });
 
-btnFechar.addEventListener('click', () => {
-  cardContainer.style.display = "none";
-});
-
+btnFechar.addEventListener('click', () => { cardContainer.style.display = "none"; });
 btnVoltar.addEventListener('click', () => {
   cardContainer.style.display = "none";
   formContainer.style.display = "block";
@@ -303,4 +208,3 @@ btnVoltar.addEventListener('click', () => {
 </script>
 </body>
 </html>
-
