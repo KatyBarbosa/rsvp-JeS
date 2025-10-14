@@ -7,22 +7,16 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
-  <!-- Favicon (ícone coração verde) -->
+  <!-- Favicon -->
   <link rel="icon" href='data:image/svg+xml;utf8,
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path fill="%238db24d" d="M12 21s-7-4.438-9.243-6.543C-0.187 11.73 3.2 7 6.5 7c1.866 0 3.093 1.04 3.5 1.71C10.407 8.04 11.634 7 13.5 7 16.8 7 20.187 11.73 21.243 14.457 19 16.562 12 21 12 21z"/>
     </svg>'>
 
   <style>
-    /* Reset e base */
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { min-height: 100vh; font-family: sans-serif; }
 
-    body { 
-      min-height: 100vh;
-      font-family: sans-serif;
-    }
-
-    /* Classes personalizadas do seu código */
     .bg-branco { background-color: white; }
     .arredondado-3xl { border-radius: 1.5rem; }
     .sombra-2xl { box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
@@ -35,7 +29,6 @@
     .nomes-de-casal { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: #8bd24d; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); line-height:1.2; }
     .verde-personalizado { background-color: #8bd24d; }
     .bg-gradiente-para-r { background: linear-gradient(to right, #fff, #f3f4f6); }
-    .de-branco-para-cinza-50 { }
     .fade-in { animation: fadeIn 0.5s ease forwards; }
     @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
     .slide-in-right { animation: slideInRight 0.5s ease forwards; }
@@ -50,26 +43,20 @@
     .monogram { font-family: 'serif'; font-size: 4rem; font-weight: bold; color: #8bd24d; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
     .couple-names { font-family: 'Great Vibes', cursive; font-size: 3.5rem; font-weight: normal; color: #8bd24d; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); line-height: 1.2; }
 
-    footer {
-      margin-top:18px;
-      font-size:0.88rem;
-      color:#555;
-      padding:12px 8px;
-      width:100%;
-      text-align:center;
-      background:#fafafa;
-      border-top:1px solid #f0f0f0;
-    }
+    footer { margin-top:18px; font-size:0.88rem; color:#555; padding:12px 8px; width:100%; text-align:center; background:#fafafa; border-top:1px solid #f0f0f0; }
+
+    .custom-green { background-color: #8bd24d; }
+    .custom-green-hover:hover { background-color: #7cc13c; }
   </style>
 </head>
 
-<body class="elegante-bg min-h-completo">
+<body>
   <div class="container mx-auto px-4 py-8 max-w-2xl">
     <!-- Cabeçalho -->
     <div class="bg-branco arredondado-3xl sombra-2xl estouro-oculto mb-6 borda-4 borda-branca">
       <div class="bg-gradiente-para-r de-branco-para-cinza-50 p-8 texto-centro borda-b-4 verde-personalizado"></div>
       <h1 class="nomes-de-casal mb-6">Jackline e Samarthony</h1>
-      <h2 class="texto-xl texto-cinza-600 mb-6">O nosso casamento já está marcado e nós estamos ansiosos para te receber. Mas para isso, pedimos que você confirme sua presença respondendo sim ou não. A lista de convidados é fundamental para o planejamento, e por isso, não podemos fazer substituições. Contamos com a sua confirmação.</h2>
+      <h2 class="text-xl text-gray-600 mb-6 texto-centro">O nosso casamento já está marcado e nós estamos ansiosos para te receber. Mas para isso, pedimos que você confirme sua presença respondendo sim ou não. A lista de convidados é fundamental para o planejamento, e por isso, não podemos fazer substituições. Contamos com a sua confirmação.</h2>
       <div class="mt-6 p-4 bg-vermelho-50 arredondado-lg borda-2 border-red-200">
         <p class="text-red-700 font-semibold">⏳ Por favor, responda até <strong>22/11/2025</strong>,caso não responda, você será cosiderado como ausente. </p>
       </div>
@@ -209,7 +196,6 @@
     Criado por <a href="https://wa.me/5591988198919?text=Olá%2C+quero+saber+sobre+o+RSVP+digital" target="_blank">Katiene Barbosa</a>
   </footer>
 
-  <!-- JavaScript -->
   <script>
     let currentStepNum = 1;
     let formData = {};
@@ -285,6 +271,29 @@
       `;
     }
 
+    async function sendToGoogleSheets(data) {
+      const SCRIPT_URL = 'COLE_AQUI_SUA_URL_DO_GAS';
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nome: data.fullName,
+            apelido: data.nickname,
+            telefone: data.phone,
+            presenca: data.attendance
+          })
+        });
+        const result = await response.json();
+        if(result.status === 'ok') return '<p class="text-green-600 text-sm mt-2">✅ Dados enviados para a planilha!</p>';
+        if(result.status === 'duplicado') return '<p class="text-yellow-600 text-sm mt-2">⚠️ Você já confirmou presença anteriormente.</p>';
+        return `<p class="text-red-600 text-sm mt-2">❌ Erro: ${result.msg}</p>`;
+      } catch (error) {
+        console.error('Erro ao enviar dados para o Google Sheets:', error);
+        return '<p class="text-red-600 text-sm mt-2">❌ Erro ao enviar dados para a planilha.</p>';
+      }
+    }
+
     async function submitForm() {
       hideError();
       formData.timestamp = new Date().toLocaleString('pt-BR');
@@ -334,22 +343,6 @@
 
       form.classList.add('hidden');
       confirmation.classList.remove('hidden');
-    }
-
-    async function sendToGoogleSheets(data) {
-      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzbPl6q-Rhd9NAryUKZe0YAdKFVm8d-Z7OheCZ8qzgiN44BdZXZiJIkSTtb-8QMWlel5g/exec';
-      try {
-        await fetch(SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
-        return '<p class="text-green-600 text-sm mt-2">✅ Dados enviados para a planilha!</p>';
-      } catch (error) {
-        console.error('Erro ao enviar dados para o Google Sheets:', error);
-        return '<p class="text-red-600 text-sm mt-2">❌ Erro ao enviar dados para a planilha.</p>';
-      }
     }
 
     function viewInvite() {
