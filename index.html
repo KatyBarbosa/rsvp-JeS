@@ -325,19 +325,28 @@
     }
 
     async function sendToGoogleSheets(data) {
-      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzbPl6q-Rhd9NAryUKZe0YAdKFVm8d-Z7OheCZ8qzgiN44BdZXZiJIkSTtb-8QMWlel5g/exec';
-      try {
-        const response = await fetch(SCRIPT_URL, {
-          method: 'POST',
-        const result = await response.json();
-        if (result.status === 'ok') return '<p class="text-green-600 text-sm mt-2">✅ Dados enviados com sucesso!</p>';
-        if (result.status === 'duplicado') return '<p class="text-yellow-600 text-sm mt-2">⚠️ Você já confirmou presença anteriormente.</p>';
-        return `<p class="text-red-600 text-sm mt-2">❌ Erro: ${result.msg || 'Resposta inesperada.'}</p>`;
-      } catch (error) {
-        console.error('Erro ao enviar dados para o Google Sheets:', error);
-        return '<p class="text-red-600 text-sm mt-2">❌ Erro ao enviar dados.</p>';
-      }
-    }
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbziwKPmvhafSUkQkSTNaGHcyKUxJ6ZHuJz8JZGhHqy1cPemWYA4iftY_yZIy_PIhqDd4Q/exec';
+  try {
+    const response = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nome: data.fullName,
+        apelido: data.nickname || '',
+        telefone: data.phone,
+        presenca: data.attendance
+      })
+    });
+    const result = await response.json();
+    if (result.status === 'ok') return '<p class="text-green-600 text-sm mt-2">✅ Dados enviados com sucesso!</p>';
+    if (result.status === 'duplicado') return '<p class="text-yellow-600 text-sm mt-2">⚠️ Você já confirmou presença anteriormente.</p>';
+    return `<p class="text-red-600 text-sm mt-2">❌ Erro: ${result.msg || 'Resposta inesperada.'}</p>`;
+  } catch (error) {
+    console.error('Erro ao enviar dados para o Google Sheets:', error);
+    return '<p class="text-red-600 text-sm mt-2">❌ Erro ao enviar dados.</p>';
+  }
+}
+
 
     async function submitForm() {
       hideError();
@@ -452,3 +461,4 @@
   </script>
 </body>
 </html>
+
