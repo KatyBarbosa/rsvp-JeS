@@ -17,7 +17,6 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { min-height: 100vh; font-family: sans-serif; }
-
     .bg-branco { background-color: white; }
     .arredondado-3xl { border-radius: 1.5rem; }
     .sombra-2xl { box-shadow: 0 25px 50px -8px rgba(0,0,0,0.25); }
@@ -27,76 +26,15 @@
     .custom-green-hover:hover { background-color: #7cc13c; }
     .error-shake { animation: shake 0.5s ease-in-out; }
     @keyframes shake { 0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);} }
-
-    input:focus {
-      border-color: #8bd24d;
-      outline: none;
-    }
-
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      color: #333;
-    }
-
-    .header-casal {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 40px;
-    }
-
-    .monograma {
-      max-width: 180px;
-      height: auto;
-      margin-bottom: 15px;
-    }
-
-    .nomes-de-casal {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.7rem;
-      color: #8bd24d;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-      line-height: 1.2;
-      text-align: center;
-    }
-
-    .texto-centralizado {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 30px auto;
-      font-size: 1.1rem;
-      line-height: 1.5;
-    }
-
-    .aviso-confirmacao {
-      background-color: #ebfad6;
-      border: 2px solid #cff1a9;
-      padding: 20px;
-      border-radius: 15px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .texto-aviso {
-      color: #d14444;
-      font-weight: bold;
-      line-height: 1.4;
-      text-align: center;
-    }
-
-    footer {
-      margin-top: 18px;
-      font-size: 0.88rem;
-      color: #555;
-      padding: 12px 8px;
-      width: 100%;
-      text-align: center;
-      background: #fafafa;
-      border-top: 1px solid #f0f0f0;
-    }
+    input:focus { border-color: #8bd24d; outline: none; }
+    .container { max-width: 700px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif; color: #333; }
+    .header-casal { display: flex; flex-direction: column; align-items: center; margin-bottom: 40px; }
+    .monograma { max-width: 180px; height: auto; margin-bottom: 15px; }
+    .nomes-de-casal { font-family: 'Great Vibes', cursive; font-size: 2.7rem; color: #8bd24d; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); line-height: 1.2; text-align: center; }
+    .texto-centralizado { text-align: center; max-width: 600px; margin: 0 auto 30px auto; font-size: 1.1rem; line-height: 1.5; }
+    .aviso-confirmacao { background-color: #ebfad6; border: 2px solid #cff1a9; padding: 20px; border-radius: 15px; max-width: 600px; margin: 0 auto; }
+    .texto-aviso { color: #d14444; font-weight: bold; line-height: 1.4; text-align: center; }
+    footer { margin-top: 18px; font-size: 0.88rem; color: #555; padding: 12px 8px; width: 100%; text-align: center; background: #fafafa; border-top: 1px solid #f0f0f0; }
   </style>
 </head>
 
@@ -139,7 +77,7 @@
         <p class="text-red-700 font-semibold text-center"></p>
       </div>
 
-      <!-- Etapa 1 -->
+      <!-- Etapas do formulário -->
       <div id="step1" class="step-content">
         <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Confirme sua presença</h3>
         <div class="space-y-6">
@@ -158,7 +96,6 @@
         </div>
       </div>
 
-      <!-- Etapa 2 -->
       <div id="step2" class="step-content hidden">
         <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Você confirma sua presença no nosso casamento?</h3>
         <div class="space-y-6">
@@ -187,7 +124,6 @@
         </div>
       </div>
 
-      <!-- Etapa 3 -->
       <div id="step3" class="step-content hidden">
         <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Revisar e Enviar</h3>
         <div class="bg-gray-50 rounded-xl p-6 mb-6">
@@ -253,6 +189,7 @@
     let currentStepNum = 1;
     let formData = {};
     let confirmations = JSON.parse(localStorage.getItem('weddingRSVP')) || [];
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwjiAOQfnWC_XGe6fHuQdZJLHsi-3vGYe_fwyO-xEUYHJj0j0uOd1_H5JSTFEBiMkUHAg/exec';
 
     const stepTitles = {
       1: 'Confirme sua presença',
@@ -302,7 +239,7 @@
       document.getElementById(`step${currentStepNum}`).classList.remove('hidden');
       updateProgress();
       updateButtons();
-      if (currentStepNum === 3) { reviewConfirmation(); }
+      if (currentStepNum === 3) reviewConfirmation();
     }
 
     function previousStep() {
@@ -324,46 +261,41 @@
       `;
     }
 
+    // nova função compatível com GAS
     async function sendToGoogleSheets(data) {
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwjiAOQfnWC_XGe6fHuQdZJLHsi-3vGYe_fwyO-xEUYHJj0j0uOd1_H5JSTFEBiMkUHAg/exec';
-  try {
-    const response = await fetch(SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        nome: data.fullName,
-        apelido: data.nickname || '',
-        telefone: data.phone,
-        presenca: data.attendance
-      })
-    });
-    const result = await response.json();
-    if (result.status === 'ok') return '<p class="text-green-600 text-sm mt-2">✅ Dados enviados com sucesso!</p>';
-    if (result.status === 'duplicado') return '<p class="text-yellow-600 text-sm mt-2">⚠️ Você já confirmou presença anteriormente.</p>';
-    return `<p class="text-red-600 text-sm mt-2">❌ Erro: ${result.msg || 'Resposta inesperada.'}</p>`;
-  } catch (error) {
-    console.error('Erro ao enviar dados para o Google Sheets:', error);
-    return '<p class="text-red-600 text-sm mt-2">❌ Erro ao enviar dados.</p>';
-  }
-}
-
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify(data)
+        });
+        const result = await response.json();
+        return result;
+      } catch (err) {
+        console.error(err);
+        return { status: 'erro', msg: 'Erro ao enviar dados' };
+      }
+    }
 
     async function submitForm() {
       hideError();
-      // garante que os dados mínimos existam
       if (!formData.fullName || !formData.phone || !formData.attendance) {
         showError('Dados incompletos. Volte e confirme todas as etapas.');
         return;
       }
 
       formData.timestamp = new Date().toLocaleString('pt-BR');
-      // salva localmente
-      confirmations.push(formData);
-      localStorage.setItem('weddingRSVP', JSON.stringify(confirmations));
+      const result = await sendToGoogleSheets(formData);
 
-      // envia ao Sheets e aguarda status
-      const sheetsStatus = await sendToGoogleSheets(formData);
+      if (result.status === 'ok' || result.status === 'duplicado') {
+        confirmations.push(formData);
+        localStorage.setItem('weddingRSVP', JSON.stringify(confirmations));
+        showConfirmation(result.status, result.msg);
+      } else {
+        showError(result.msg || 'Erro ao enviar dados.');
+      }
+    }
 
+    function showConfirmation(status, msg) {
       const formEl = document.querySelector('.bg-branco.arredondado-3xl.sombra-2xl.p-8.borda-4.borda-branca');
       const confirmation = document.getElementById('confirmationMessage');
       const icon = document.getElementById('confirmationIcon');
@@ -372,41 +304,23 @@
       const subtext = document.getElementById('confirmationSubtext');
       const displayName = formData.nickname || formData.fullName.split(' ')[0];
 
-      if (formData.attendance === 'sim') {
-        icon.textContent = '💚';
-        title.textContent = `Obrigado, ${displayName}!`;
-        title.className = 'text-3xl font-bold mb-4 text-green-600';
-        details.innerHTML = `
-          <div class="text-left" style="line-height:1.4">
-            <p><strong>Nome:</strong> ${formData.fullName}</p>
-            ${formData.nickname ? `<p><strong>Apelido:</strong> ${formData.nickname}</p>` : ''}
-            <p><strong>Telefone:</strong> ${formData.phone}</p>
-            <p><strong>Confirmação:</strong> ✅ Presença confirmada</p>
-            <p><strong>Data da confirmação:</strong> ${formData.timestamp}</p>
-            ${sheetsStatus}
-          </div>
-        `;
-        subtext.innerHTML = `<p>Uhuuul! 🎉 Obrigado por confirmar sua presença!</p>
-                             <p>Estamos preparando tudo com muito carinho para receber você nesse dia tão especial. Contagem regressiva ativada 💕</p>`;
-      } else {
-        icon.textContent = '💚';
-        title.textContent = `Obrigado, ${displayName}!`;
-        title.className = 'text-3xl font-bold mb-4 text-blue-600';
-        details.innerHTML = `
-          <div class="text-left" style="line-height:1.4">
-            <p><strong>Nome:</strong> ${formData.fullName}</p>
-            ${formData.nickname ? `<p><strong>Apelido:</strong> ${formData.nickname}</p>` : ''}
-            <p><strong>Telefone:</strong> ${formData.phone}</p>
-            <p><strong>Resposta:</strong> ❌ Não poderá comparecer</p>
-            <p><strong>Data da resposta:</strong> ${formData.timestamp}</p>
-            ${sheetsStatus}
-          </div>
-        `;
-        subtext.innerHTML = `<p>Agradecemos por nos informar. 😩 Sentiremos sua falta, mas sabemos que estará conosco em pensamento.</p>
-                             <p>Obrigado por fazer parte da nossa vida!</p>`;
-      }
+      icon.textContent = formData.attendance === 'sim' ? '💚' : '💚';
+      title.textContent = `Obrigado, ${displayName}!`;
+      title.className = 'text-3xl font-bold mb-4 text-green-600';
+      details.innerHTML = `
+        <div class="text-left" style="line-height:1.4">
+          <p><strong>Nome:</strong> ${formData.fullName}</p>
+          ${formData.nickname ? `<p><strong>Apelido:</strong> ${formData.nickname}</p>` : ''}
+          <p><strong>Telefone:</strong> ${formData.phone}</p>
+          <p><strong>Confirmação:</strong> ${formData.attendance === 'sim' ? '✅ Presença confirmada' : '❌ Não poderá comparecer'}</p>
+          <p><strong>Data:</strong> ${formData.timestamp}</p>
+          ${msg ? `<p>${msg}</p>` : ''}
+        </div>
+      `;
+      subtext.innerHTML = formData.attendance === 'sim'
+        ? `<p>Uhuuul! 🎉 Obrigado por confirmar sua presença!</p><p>Estamos preparando tudo com muito carinho para receber você nesse dia tão especial. Contagem regressiva ativada 💕</p>`
+        : `<p>Agradecemos por nos informar. 😩 Sentiremos sua falta, mas sabemos que estará conosco em pensamento.</p><p>Obrigado por fazer parte da nossa vida!</p>`;
 
-      // esconde o formulário e mostra confirmação
       if (formEl) formEl.classList.add('hidden');
       confirmation.classList.remove('hidden');
     }
@@ -424,12 +338,9 @@
     function resetForm() {
       formData = {};
       currentStepNum = 1;
-      const elFullName = document.getElementById('fullName');
-      if (elFullName) elFullName.value = '';
-      const elNickname = document.getElementById('nickname');
-      if (elNickname) elNickname.value = '';
-      const elPhone = document.getElementById('phone');
-      if (elPhone) elPhone.value = '';
+      document.getElementById('fullName').value = '';
+      document.getElementById('nickname').value = '';
+      document.getElementById('phone').value = '';
       document.querySelectorAll('input[name="attendance"]').forEach(r => r.checked = false);
       document.querySelectorAll('.step-content').forEach(step => step.classList.add('hidden'));
       document.getElementById('step1').classList.remove('hidden');
@@ -442,7 +353,6 @@
       hideError();
     }
 
-    // formatação do telefone
     const phoneInput = document.getElementById('phone');
     if (phoneInput) {
       phoneInput.addEventListener('input', function(e) {
@@ -455,11 +365,8 @@
       });
     }
 
-    // inicializa
     updateProgress();
     updateButtons();
   </script>
 </body>
 </html>
-
-
