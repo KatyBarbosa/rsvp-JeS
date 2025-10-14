@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#8bd24d">
   <title>Jackline e Samarthony - RSVP</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
@@ -12,8 +13,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path fill="%238db24d" d="M12 21s-7-4.438-9.243-6.543C-0.187 11.73 3.2 7 6.5 7c1.866 0 3.093 1.04 3.5 1.71C10.407 8.04 11.634 7 13.5 7 16.8 7 20.187 11.73 21.243 14.457 19 16.562 12 21 12 21z"/>
     </svg>'>
-  
-  
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { min-height: 100vh; font-family: sans-serif; }
@@ -21,134 +21,109 @@
     .bg-branco { background-color: white; }
     .arredondado-3xl { border-radius: 1.5rem; }
     .sombra-2xl { box-shadow: 0 25px 50px -8px rgba(0,0,0,0.25); }
-    .estouro-oculto { overflow: hidden; }
     .borda-4 { border-width: 4px; }
     .borda-branca { border-color: white; }
-    .bg-vermelho-50 { background-color: #ebfad6; }
-    .border-red-200 { border-color: #cff1a9; }
-    .texto-centro { text-align: justify; }
-    .verde-personalizado { background-color: #8bd24d; }
-    .bg-gradiente-para-r { background: linear-gradient(to right, #fff, #f3f4f6); }
-    .fade-in { animation: fadeIn 0.5s ease forwards; }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-    .slide-in-right { animation: slideInRight 0.5s ease forwards; }
-    @keyframes slideInRight { from { opacity:0; transform:translateX(50px); } to { opacity:1; transform:translateX(0); } }
-    .slide-in-left { animation: slideInLeft 0.5s ease forwards; }
-    @keyframes slideInLeft { from { opacity:0; transform:translateX(-50px); } to { opacity:1; transform:translateX(0); } }
-    .success-animation { animation: successPulse 0.8s ease-out; }
-    @keyframes successPulse { 0% { transform:scale(0.8); opacity:0; } 50% { transform:scale(1.05); } 100% { transform:scale(1); opacity:1; } }
-    .error-shake { animation: shake 0.5s ease-in-out; }
-    @keyframes shake { 0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);} }
-.texto-justificado {
-  text-align: justify;           /* Justifica o texto */
-  text-justify: inter-word;      /* Distribuição das palavras */
-  max-width: 600px;              /* Largura máxima do bloco */
-  margin: 0 auto;                /* Centraliza o bloco na tela */
-}
-.couple-names { font-family: 'Great Vibes', cursive; font-size: 2.7rem; font-weight: normal; color: #8bd24d; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); line-height: 1.2; }
-.monograma {
-  display: block;
-  max-width: 180px;
-  height: auto;
-  margin: 0 auto;
-}
-    footer { margin-top:18px; font-size:0.88rem; color:#555; padding:12px 8px; width:100%; text-align:center; background:#fafafa; border-top:1px solid #f0f0f0; }
-
     .custom-green { background-color: #8bd24d; }
     .custom-green-hover:hover { background-color: #7cc13c; }
-    /* Container principal */
-.container {
-  max-width: 700px;
-  margin: 0 auto;       /* Centraliza todo o conteúdo */
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  color: #333;
-}
+    .error-shake { animation: shake 0.5s ease-in-out; }
+    @keyframes shake { 0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);} }
 
-/* Cabeçalho casal */
-.header-casal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 40px;
-}
+    input:focus {
+      border-color: #8bd24d;
+      outline: none;
+    }
 
-/* Monograma */
-.monograma {
-  max-width: 180px;
-  height: auto;
-  margin-bottom: 15px;
-}
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
 
-/* Nomes do casal */
-.nomes-de-casal {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2.7rem;
-  color: #8bd24d;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-  line-height: 1.2;
-  text-align: center;
-}
+    .header-casal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+    }
 
-/* Texto principal centralizado e justificado */
-.texto-centralizado {
-  text-align: center;
-  text-justify: auto;
-  max-width: 600px;
-  margin: 0 auto 30px auto;
-  font-size: 1.1rem;
-  line-height: 1.5;
-}
+    .monograma {
+      max-width: 180px;
+      height: auto;
+      margin-bottom: 15px;
+    }
 
-/* Aviso de confirmação */
-.aviso-confirmacao {
-  background-color: #ebfad6;
-  border: 2px solid #cff1a9;
-  padding: 20px;
-  border-radius: 15px;
-  max-width: 600px;
-  margin: 0 auto;
-}
+    .nomes-de-casal {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.7rem;
+      color: #8bd24d;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      line-height: 1.2;
+      text-align: center;
+    }
 
-/* Texto dentro do aviso */
-.texto-aviso {
-  color: #d14444;
-  font-weight: bold;
-  margin: 0;
-  line-height: 1.4;
-  text-align: center;
-  text-justify: auto;
-}
+    .texto-centralizado {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
 
+    .aviso-confirmacao {
+      background-color: #ebfad6;
+      border: 2px solid #cff1a9;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .texto-aviso {
+      color: #d14444;
+      font-weight: bold;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 18px;
+      font-size: 0.88rem;
+      color: #555;
+      padding: 12px 8px;
+      width: 100%;
+      text-align: center;
+      background: #fafafa;
+      border-top: 1px solid #f0f0f0;
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
-  <!-- Cabeçalho -->
-  <div class="header-casal">
-    <img src="monograma.png" alt="Monograma J & S" class="monograma" />
-    <h1 class="nomes-de-casal">Jackline e Samarthony</h1>
-  </div>
+    <!-- Cabeçalho -->
+    <div class="header-casal">
+      <img src="monograma.png" alt="Monograma J & S" class="monograma" loading="lazy" />
+      <h1 class="nomes-de-casal">Jackline e Samarthony</h1>
+    </div>
 
-  <!-- Texto principal -->
-  <h2 class="texto-centralizado">
-    <p> Nosso casamento está marcado!</p>
-    <p> Cada convidado foi cuidadosamente escolhido e cada convite é único.</p>
-    <p> Sua presença é garantida se for confirmada e não será substituída por outra pessoa.</p>
-    <p> Sua confirmação é essencial!</p>
-  </h2>
+    <!-- Texto principal -->
+    <div class="texto-centralizado">
+      <p>Nosso casamento está marcado!</p>
+      <p>Cada convidado foi cuidadosamente escolhido e cada convite é único.</p>
+      <p>Sua presença é garantida se for confirmada e não será substituída por outra pessoa.</p>
+      <p>Sua confirmação é essencial!</p>
+    </div>
 
-  <!-- Aviso de confirmação -->
-  <div class="aviso-confirmacao">
-    <p class="texto-aviso">⏳ Por favor, confirme sua presença até <strong>22/11/2025</strong>
-  </div>
-</div>
-
+    <!-- Aviso de confirmação -->
+    <div class="aviso-confirmacao">
+      <p class="texto-aviso">⏳ Por favor, confirme sua presença até <strong>22/11/2025</strong></p>
+    </div>
 
     <!-- Formulário RSVP -->
-    <div class="bg-branco arredondado-3xl sombra-2xl p-8 borda-4 borda-branca">
-      <!-- Progress Bar -->
+    <div class="bg-branco arredondado-3xl sombra-2xl p-8 borda-4 borda-branca mt-6">
+      <!-- Barra de progresso -->
       <div class="mb-8">
         <div class="flex justify-between items-center mb-2">
           <span class="text-sm font-semibold text-gray-600">Etapa <span id="currentStep">1</span> de 3</span>
@@ -164,25 +139,26 @@
         <p class="text-red-700 font-semibold text-center"></p>
       </div>
 
-      <!-- Etapas do formulário -->
+      <!-- Etapa 1 -->
       <div id="step1" class="step-content">
         <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Confirme sua presença</h3>
         <div class="space-y-6">
           <div>
             <label class="block text-sm font-semibold text-gray-700 mb-2">Nome Completo *</label>
-            <input type="text" id="fullName" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none transition-colors" style="focus:border-color: #8bd24d;" placeholder="Digite seu nome completo">
+            <input type="text" id="fullName" autocomplete="off" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg transition-colors" placeholder="Digite seu nome completo">
           </div>
           <div>
             <label class="block text-sm font-semibold text-gray-700 mb-2">Apelido (Opcional)</label>
-            <input type="text" id="nickname" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none transition-colors" style="focus:border-color: #8bd24d;" placeholder="Como gostaria de ser chamado(a)">
+            <input type="text" id="nickname" autocomplete="off" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg transition-colors" placeholder="Como gostaria de ser chamado(a)">
           </div>
           <div>
             <label class="block text-sm font-semibold text-gray-700 mb-2">Telefone *</label>
-            <input type="tel" id="phone" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none transition-colors" style="focus:border-color: #8bd24d;" placeholder="(11) 99999-9999">
+            <input type="tel" id="phone" autocomplete="off" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg transition-colors" placeholder="(11) 99999-9999">
           </div>
         </div>
       </div>
 
+      <!-- Etapa 2 -->
       <div id="step2" class="step-content hidden">
         <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Você confirma sua presença no nosso casamento?</h3>
         <div class="space-y-6">
@@ -211,6 +187,7 @@
         </div>
       </div>
 
+      <!-- Etapa 3 -->
       <div id="step3" class="step-content hidden">
         <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Revisar e Enviar</h3>
         <div class="bg-gray-50 rounded-xl p-6 mb-6">
@@ -224,17 +201,17 @@
       </div>
 
       <!-- Botões -->
-      <div class="flex justify-between mt-8">
-        <button id="backBtn" onclick="previousStep()" class="hidden px-6 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors font-semibold"> ← Voltar </button>
+      <div class="flex justify-between gap-4 mt-8">
+        <button id="backBtn" onclick="previousStep()" class="hidden px-6 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors font-semibold">← Voltar</button>
         <div class="flex-1"></div>
-        <button id="nextBtn" onclick="nextStep()" class="px-8 py-3 custom-green custom-green-hover text-white rounded-lg transition-colors font-semibold"> Próximo → </button>
-        <button id="sendBtn" onclick="submitForm()" class="hidden px-8 py-3 custom-green custom-green-hover text-white rounded-lg transition-colors font-semibold"> 💌 Enviar Confirmação </button>
+        <button id="nextBtn" onclick="nextStep()" class="px-8 py-3 custom-green custom-green-hover text-white rounded-lg transition-colors font-semibold">Próximo →</button>
+        <button id="sendBtn" onclick="submitForm()" class="hidden px-8 py-3 custom-green custom-green-hover text-white rounded-lg transition-colors font-semibold">💌 Enviar Confirmação</button>
       </div>
     </div>
 
-    <!-- Ver Convite -->
+    <!-- Botão Ver Convite -->
     <div class="text-center mt-6">
-      <button onclick="viewInvite()" class="bg-blue-500 text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition-colors font-semibold text-lg shadow-lg"> 👁️ Ver Convite Digital </button>
+      <button onclick="viewInvite()" class="bg-blue-500 text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition-colors font-semibold text-lg shadow-lg">👁️ Ver Convite Digital</button>
     </div>
 
     <!-- Mensagem de Confirmação -->
@@ -244,28 +221,22 @@
         <h3 id="confirmationTitle" class="text-3xl font-bold mb-4"></h3>
         <div id="confirmationDetails" class="bg-gray-50 rounded-xl p-6 mb-6"></div>
         <p id="confirmationSubtext" class="text-gray-600 mb-6"></p>
-        <button onclick="resetForm()" class="custom-green custom-green-hover text-white px-6 py-3 rounded-lg transition-colors font-semibold"> Nova Confirmação </button>
+        <button onclick="resetForm()" class="custom-green custom-green-hover text-white px-6 py-3 rounded-lg transition-colors font-semibold">Nova Confirmação</button>
       </div>
     </div>
 
     <!-- Visualizar Convite -->
     <div id="invitationView" class="hidden bg-branco arredondado-3xl sombra-2xl p-8 borda-4 borda-branca mt-6">
       <div class="text-center">
-        <img src="monograma.png" alt="Monograma J & S" class="monograma" />
-        <h2 class="couple-names mb-4">Jackline e Samarthony</h2>
+        <img src="monograma.png" alt="Monograma J & S" class="monograma" loading="lazy" />
+        <h2 class="nomes-de-casal mb-4">Jackline e Samarthony</h2>
         <div class="bg-gray-50 rounded-xl p-6 mb-6">
           <p class="text-lg text-gray-700 mb-4">
-            <strong>O amor nos uniu, e agora queremos dividir 
-            essa felicidade com você no nosso casamento</strong>  
-                      </p>
+            <strong>O amor nos uniu, e agora queremos dividir essa felicidade com você no nosso casamento</strong>
+          </p>
           <div class="border-t-2 border-gray-200 pt-4">
-            <p class="text-lg text-gray-600 mb-4">
-              <strong>Acessar convite:</strong>
-            </p>
-            <a href="SEU_LINK_AQUI" target="_blank" rel="noopener noreferrer" 
-               class="inline-block custom-green custom-green-hover text-white px-6 py-3 rounded-lg transition-colors font-semibold mb-4">
-              🌐 Abrir Convite 
-            </a>
+            <p class="text-lg text-gray-600 mb-4"><strong>Acessar convite:</strong></p>
+            <a href="SEU_LINK_AQUI" target="_blank" rel="noopener noreferrer" class="inline-block custom-green custom-green-hover text-white px-6 py-3 rounded-lg transition-colors font-semibold mb-4">🌐 Abrir Convite</a>
             <p class="text-sm text-gray-500">*Clique para ver o convite</p>
           </div>
         </div>
@@ -356,20 +327,12 @@
     async function sendToGoogleSheets(data) {
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzbPl6q-Rhd9NAryUKZe0YAdKFVm8d-Z7OheCZ8qzgiN44BdZXZiJIkSTtb-8QMWlel5g/exec';
       try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbzbPl6q-Rhd9NAryUKZe0YAdKFVm8d-Z7OheCZ8qzgiN44BdZXZiJIkSTtb-8QMWlel5g/exec", {
+        const response = await fetch(SCRIPT_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            nome: data.fullName,
-            apelido: data.nickname,
-            telefone: data.phone,
-            presenca: data.attendance
-          })
-        });
         const result = await response.json();
-        if(result.status === 'ok') return '<p class="text-green-600 text-sm mt-2">✅ Dados enviados com sucesso!</p>';
-        if(result.status === 'duplicado') return '<p class="text-yellow-600 text-sm mt-2">⚠️ Você já confirmou presença anteriormente.</p>';
-        return `<p class="text-red-600 text-sm mt-2">❌ Erro: ${result.msg}</p>`;
+        if (result.status === 'ok') return '<p class="text-green-600 text-sm mt-2">✅ Dados enviados com sucesso!</p>';
+        if (result.status === 'duplicado') return '<p class="text-yellow-600 text-sm mt-2">⚠️ Você já confirmou presença anteriormente.</p>';
+        return `<p class="text-red-600 text-sm mt-2">❌ Erro: ${result.msg || 'Resposta inesperada.'}</p>`;
       } catch (error) {
         console.error('Erro ao enviar dados para o Google Sheets:', error);
         return '<p class="text-red-600 text-sm mt-2">❌ Erro ao enviar dados.</p>';
@@ -378,12 +341,21 @@
 
     async function submitForm() {
       hideError();
+      // garante que os dados mínimos existam
+      if (!formData.fullName || !formData.phone || !formData.attendance) {
+        showError('Dados incompletos. Volte e confirme todas as etapas.');
+        return;
+      }
+
       formData.timestamp = new Date().toLocaleString('pt-BR');
+      // salva localmente
       confirmations.push(formData);
       localStorage.setItem('weddingRSVP', JSON.stringify(confirmations));
+
+      // envia ao Sheets e aguarda status
       const sheetsStatus = await sendToGoogleSheets(formData);
 
-      const form = document.querySelector('.bg-branco.arredondado-3xl.sombra-2xl.p-8.borda-4.borda-branca');
+      const formEl = document.querySelector('.bg-branco.arredondado-3xl.sombra-2xl.p-8.borda-4.borda-branca');
       const confirmation = document.getElementById('confirmationMessage');
       const icon = document.getElementById('confirmationIcon');
       const title = document.getElementById('confirmationTitle');
@@ -396,7 +368,7 @@
         title.textContent = `Obrigado, ${displayName}!`;
         title.className = 'text-3xl font-bold mb-4 text-green-600';
         details.innerHTML = `
-          <div class="text-left space-y-2">
+          <div class="text-left" style="line-height:1.4">
             <p><strong>Nome:</strong> ${formData.fullName}</p>
             ${formData.nickname ? `<p><strong>Apelido:</strong> ${formData.nickname}</p>` : ''}
             <p><strong>Telefone:</strong> ${formData.phone}</p>
@@ -405,15 +377,14 @@
             ${sheetsStatus}
           </div>
         `;
-        subtext.textContent = 'Uhuuul! 🎉 Obrigado por confirmar sua presença!
-          Estamos preparando tudo com muito carinho para receber você nesse dia tão especial. 
-          Contagem regressiva ativada 💕';
+        subtext.innerHTML = `<p>Uhuuul! 🎉 Obrigado por confirmar sua presença!</p>
+                             <p>Estamos preparando tudo com muito carinho para receber você nesse dia tão especial. Contagem regressiva ativada 💕</p>`;
       } else {
         icon.textContent = '💚';
         title.textContent = `Obrigado, ${displayName}!`;
         title.className = 'text-3xl font-bold mb-4 text-blue-600';
         details.innerHTML = `
-          <div class="text-left space-y-2">
+          <div class="text-left" style="line-height:1.4">
             <p><strong>Nome:</strong> ${formData.fullName}</p>
             ${formData.nickname ? `<p><strong>Apelido:</strong> ${formData.nickname}</p>` : ''}
             <p><strong>Telefone:</strong> ${formData.phone}</p>
@@ -422,11 +393,12 @@
             ${sheetsStatus}
           </div>
         `;
-        subtext.textContent = 'Agradecemos por nos informar.😩 Sentiremos sua falta, mas sabemos que estará conosco em pensamento.
-                               Obrigado por fazer parte da nossa vida!';
+        subtext.innerHTML = `<p>Agradecemos por nos informar. 😩 Sentiremos sua falta, mas sabemos que estará conosco em pensamento.</p>
+                             <p>Obrigado por fazer parte da nossa vida!</p>`;
       }
 
-      form.classList.add('hidden');
+      // esconde o formulário e mostra confirmação
+      if (formEl) formEl.classList.add('hidden');
       confirmation.classList.remove('hidden');
     }
 
@@ -443,46 +415,40 @@
     function resetForm() {
       formData = {};
       currentStepNum = 1;
-      document.getElementById('fullName').value = '';
-      document.getElementById('nickname').value = '';
-      document.getElementById('phone').value = '';
+      const elFullName = document.getElementById('fullName');
+      if (elFullName) elFullName.value = '';
+      const elNickname = document.getElementById('nickname');
+      if (elNickname) elNickname.value = '';
+      const elPhone = document.getElementById('phone');
+      if (elPhone) elPhone.value = '';
       document.querySelectorAll('input[name="attendance"]').forEach(r => r.checked = false);
       document.querySelectorAll('.step-content').forEach(step => step.classList.add('hidden'));
       document.getElementById('step1').classList.remove('hidden');
       document.getElementById('confirmationMessage').classList.add('hidden');
       document.getElementById('invitationView').classList.add('hidden');
-      document.querySelector('.bg-branco.arredondado-3xl.sombra-2xl.p-8.borda-4.borda-branca').classList.remove('hidden');
+      const formEl = document.querySelector('.bg-branco.arredondado-3xl.sombra-2xl.p-8.borda-4.borda-branca');
+      if (formEl) formEl.classList.remove('hidden');
       updateProgress();
       updateButtons();
       hideError();
     }
 
-    document.getElementById('phone').addEventListener('input', function(e) {
-      let value = e.target.value.replace(/\D/g,'');
-      if(value.length >= 11) value = value.replace(/(\d{2})(\d{5})(\d{4})/,'($1) $2-$3');
-      else if(value.length >= 7) value = value.replace(/(\d{2})(\d{4})(\d{0,4})/,'($1) $2-$3');
-      else if(value.length >= 3) value = value.replace(/(\d{2})(\d{0,5})/,'($1) $2');
-      e.target.value = value;
-    });
+    // formatação do telefone
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput) {
+      phoneInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 11) value = value.slice(0, 11);
+        if (value.length >= 11) value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+        else if (value.length >= 7) value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+        else if (value.length >= 3) value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+        e.target.value = value;
+      });
+    }
 
+    // inicializa
     updateProgress();
     updateButtons();
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
